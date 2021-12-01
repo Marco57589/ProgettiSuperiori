@@ -1,0 +1,234 @@
+<!-- MarcoPapa 13/03/2019-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<!------------------------------------------------------------------------------------------------->
+<script>
+
+	var turno = 1; //turno =1 (giocatore 1) turno = 2 (giocatore 2)  "I TURNI SONO ALTERNATI OGNI PARTITA"
+	var fine = false;	//Pareggio/Vittoria
+	var riga=1;
+	var colonna=1;
+	var giusto = "border: 5px solid green";
+	var partite = 1;
+	var pareggio = 0;	//contatore celle occupate "quando vinci si azzera"
+
+	$(document).ready(function() {
+		$(".cella").click(function(){
+			var id = $(this).attr('id');
+
+			if(fine){
+				alert("Pulisci il campo per continuare a giocare!");
+			}else{
+	/* Giocata */
+				if(turno==1){
+					if($(this).attr('src')=="img/Campo.png"){
+						$(this).attr('src', "img/O.png");
+						$("#turno").attr('src', "img/X.png");
+						$("#ProsTurno").html("Turno: "+$(g2).val());
+						pareggio++;
+						turno=2;
+					}
+				}else if(turno==2){
+					if($(this).attr('src')=="img/Campo.png"){
+						$(this).attr('src', "img/X.png");
+						$("#turno").attr('src', "img/O.png");
+						$("#ProsTurno").html("Turno: "+$(g1).val());
+						pareggio++;
+						turno=1;
+					}
+				}
+	/* Controllo Riga */
+				for(riga=1; riga<4; riga++){
+					var e1 = $('#'+riga+1).attr("src");
+					var e2 = $('#'+riga+2).attr("src");
+					var e3 = $('#'+riga+3).attr("src");
+					if(e1!="img/Campo.png" && e2!="img/Campo.png" && e3!="img/Campo.png"){
+						if(e1==e2 && e1 == e3){
+							$('#'+riga+1).attr('style', giusto);
+							$('#'+riga+2).attr('style', giusto);
+							$('#'+riga+3).attr('style', giusto);
+							if(turno==1){
+								document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") Vince " +$(g2).val();
+								partite++;
+								pareggio=0;
+								fine=true;
+							}else if(turno==2){
+								document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") Vince " +$(g1).val();
+								partite++;
+								pareggio=0;
+								fine=true;
+							}
+						}
+					}
+				}
+	/* Controllo Colonna */
+				for(colonna=1; colonna<4; colonna++){
+					var e1 = $('#'+1+colonna).attr("src");
+					var e2 = $('#'+2+colonna).attr("src");
+					var e3 = $('#'+3+colonna).attr("src");
+
+					if(e1!="img/Campo.png" && e2!="img/Campo.png" && e3!="img/Campo.png"){
+						if(e1==e2 && e1 == e3){
+							$('#'+1+colonna).attr('style', giusto);
+							$('#'+2+colonna).attr('style', giusto);
+							$('#'+3+colonna).attr('style', giusto);
+							if(turno==1){
+								document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") Vince " +$(g2).val();
+								partite++;
+								pareggio=0;
+								fine=true;
+							}else if(turno==2){
+								document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") Vince " +$(g1).val();
+								partite++;
+								pareggio=0;
+								fine=true;
+							}
+						}
+					}
+				}		
+	/* Controllo Obliquo Sinistra---Destra */
+				var e1 = $('#'+1+1).attr("src");
+				var e2 = $('#'+2+2).attr("src");
+				var e3 = $('#'+3+3).attr("src");
+				if(e1!="img/Campo.png" && e2!="img/Campo.png" && e3!="img/Campo.png"){
+					if(e1==e2 && e1 == e3){
+						$('#'+1+1).attr('style', giusto);
+						$('#'+2+2).attr('style', giusto);
+						$('#'+3+3).attr('style', giusto);
+						if(turno==1){
+							document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") Vince " +$(g2).val();
+							partite++;
+							pareggio=0;
+							fine=true;
+						}else if(turno==2){
+							document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") Vince " +$(g1).val();
+							partite++;
+							pareggio=0;
+							fine=true;
+						}
+					}
+				}
+	/* Controllo Obliquo Destra---Sinistra */
+				var e1 = $('#'+3+1).attr("src");
+				var e2 = $('#'+2+2).attr("src");
+				var e3 = $('#'+1+3).attr("src");
+				if(e1!="img/Campo.png" && e2!="img/Campo.png" && e3!="img/Campo.png"){
+					if(e1==e2 && e1 == e3){
+						$('#'+3+1).attr('style', giusto);
+						$('#'+2+2).attr('style', giusto);
+						$('#'+1+3).attr('style', giusto);
+						if(turno==1){
+							document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") Vince " +$(g2).val();
+							partite++;
+							pareggio=0;
+							fine=true;
+						}else if(turno==2){
+							document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") Vince " +$(g1).val();
+							partite++;
+							pareggio=0;
+							fine=true;
+						}
+					}
+				}
+	/* Se Tutte le celle sono uccupate e nessuno ha vinto */
+				if(pareggio==9){
+					document.getElementById("Storico").innerHTML += "<br>Partita: "+partite+") PAREGGIO";
+					partite++;
+					pareggio=0;
+					$(".imgtris").attr('style',"border:3px solid red");
+					fine=true;
+				}
+	/* Se arrivo a 15 partite azzero lo storico */
+				if(partite==15){
+					$("#Storico").html("Storico Partite:");
+				}
+			}	
+		});
+
+	/* Pulisci */
+		$("#pulisci").click(function(){
+			$(".imgtris").attr('src', "img/Campo.png");
+			$(".imgtris").attr('style',"border:none");
+			pareggio=0;
+			fine=false;
+		});
+
+	/* Giocatore 1 */
+		$("#g1").change(function(){ //.change = si attiva ogni volta che quel elemento viene modificato
+			var g1 = $(this).val();
+			if(g1 == "" || g1 == null){
+				$("#g1").attr('style',"border:2px solid red");
+			}
+		});
+		
+	/* Giocatore 2 */
+		$("#g2").change(function(){ //.change = si attiva ogni volta che quel elemento viene modificato
+			var g2 = $(this).val();
+			if(g2 == "" || g2 == null){
+				$("#g2").attr('style',"border:2px solid red");
+			}
+		});
+	});		
+</script>
+
+<header>
+	<h1 class="Titolo grassetto centro">TRIS</h1>
+</header>
+
+<body style="background-color:#b3e1fc">
+	<center>
+	<hr id="linea">
+	<div class="row">
+		<div class="col s3"> 
+			<p id="Storico" class="grassetto storico">Storico Partite:</p>
+		</div>
+
+		<div class="col s6"> 
+			<div class="row">
+				<div class="Container">	
+					<div class="row" >
+						<img src="img/Campo.png" id="11" class="img col s4 cella imgtris">
+						<img src="img/Campo.png" id="12" class="img col s4 cella imgtris">
+						<img src="img/Campo.png" id="13" class="img col s4 cella imgtris">
+					</div>
+					<div class="row">
+						<img src="img/Campo.png" id="21" class="img col s4 cella imgtris">	
+						<img src="img/Campo.png" id="22" class="img col s4 cella imgtris">
+						<img src="img/Campo.png" id="23" class="img col s4 cella imgtris">
+					</div>
+					<div class="row">
+						<img src="img/Campo.png" id="31" class="img col s4 cella imgtris">
+						<img src="img/Campo.png" id="32" class="img col s4 cella imgtris">
+						<img src="img/Campo.png" id="33" class="img col s4 cella imgtris">
+					</div>
+					<div class="row">			
+						<button id="pulisci" class="Bottone grassetto col s6 offset-s6"> Pulisci Campo </button>
+					</div>
+				</div>	
+			</div>
+		</div> 	
+
+		<div class="col s3 comandi"> 
+			<div class="row">
+				<input class="inserimento grassetto destra s3" type="text" id="g1" placeholder="Nome Giocatore 1" value="Giocatore1">
+				<input class="inserimento grassetto destra s3" type="text" id="g2" placeholder="Nome Giocatore 2" value="Giocatore2">
+				<hr id="linea">
+				<p id="ProsTurno" class="grassetto storico">Turno: Giocatore1</p>
+					<img src="img/O.png" id="turno" class="img s3">
+				<hr id="linea">
+					<p class="grassetto storico">Premi per riavviare il programma</p>				
+				<button id="reset" class="Bottone grassetto s3 riavvio" onclick="location.reload()"> RIAVVIO </button>
+			</div>
+		</div>
+	</div>	
+			
+	<hr id="linea">
+	</center>
+</body>
+</html>
