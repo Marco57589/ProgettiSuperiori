@@ -1,0 +1,40 @@
+h1{
+    font-size: 12;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+hr{
+    border-bottom:2px solid blue;
+}
+p{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin:0px;
+    padding:5px;
+}
+#titolo{
+    font-size: 20px;
+    color:red;
+}
+#campo{
+    font-size: 20px;
+    color:blue;
+}
+footer{
+    border-top:2px solid blue;
+}
+input{
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    border:2px solid blue;
+    border-radius:5px;
+    padding:7px;
+    width:400px;    
+}
+input:hover{
+	color:red;
+}
+
