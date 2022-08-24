@@ -1,0 +1,161 @@
+.Container{
+	border: 3px solid blue;
+	background-color: inherit;
+	width: 850px;
+	height: 750px;
+   	font-size:20px;
+}
+.bottone{	 
+	height:50px;
+	width: 250px;
+	border: 3px solid blue;
+	border-radius:10px;
+	font-weight: bold;
+	background-color:inherit;
+}
+.bottone:hover{
+	background-color:lime;
+	color:blue;
+	font-weight:bold;
+}
+.radio-inline{
+	position:Relative;
+	margin-left:75px;
+}
+.pallino{
+	height: 20px;
+	width: 20px;
+	border: 2px solid blue;
+	position:relative;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+.lista{
+	border:2px solid blue;
+	border-radius:6px;
+	width:250px;
+	height:45px;
+	text-align:center;
+	position:relative;
+	margin-left:-175px;
+}
+.dim1{
+	width:190px;
+	height:35px;
+	margin-left:130px;	
+}
+.dim2{
+	width:200px;
+	height:35px;
+	margin-left:170px;
+}
+.dim3{
+	width:300px;
+	height:35px;
+	margin-right:120px;
+}
+.dim4{
+	width:230px;
+	height:35px;
+	margin-left:30px;
+}
+input{
+	text-align:left;
+	color:blue;
+	font-weight: bold;
+	font-size:15px;	
+}
+input::placeholder {
+	text-align:center;
+}
+.Pallino{
+	position:relative;
+	margin-right:330px;
+	margin-top:20px;
+}
+.Campo{
+	border:2px solid blue;
+	padding:2px;
+	text-align:left;
+	border-radius:6px;
+	font-weight: bold;
+	background-color:white;
+	position:relative;
+	padding-left: 15px;
+}
+.campoS{
+	width:230px;
+	height:35px;
+	border:2px solid blue;
+	padding:2px;
+	text-align:left;
+	border-radius:6px;
+	font-weight: bold;
+	margin-left:90px;
+	background-color:white;
+	position:relative;
+	padding-left: 15px;
+}
+.campoD{
+	width:230px;
+	height:35px;
+	border:2px solid blue;
+	padding:2px;
+	text-align:left;
+	border-radius:6px;
+	margin-left: 150px;
+	font-weight: bold;
+	background-color:white;
+	position:relative;
+	padding-left: 15px;
+}
+#TestoS{
+	color:black;
+	text-align:left;
+	font-size: 18px;
+	position: absolute;
+	margin-left: 40px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+#TestoD{
+	color:black;
+	text-align:left;
+	font-size: 18px;
+	position: absolute;
+	margin-left: 420px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+#CP{
+	color:black;
+	text-align:left;
+	font-size: 18px;
+	position: absolute;
+	margin-left: 420px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+#Pro{
+	color:black;
+	text-align:left;
+	font-size: 18px;
+	position: absolute;
+	margin-left: 420px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+#Gr{
+	color:black;
+	text-align:left;
+	font-size: 18px;
+	position: absolute;
+	margin-left: 40px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+#Titolo{
+	font-weight: bold;
+	color:blue;
+	font-size: 55px;	
+}

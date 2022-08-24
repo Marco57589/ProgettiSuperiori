@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Distruggi i palloncini </title>
+<!-- Import--------------------------------------------------------------------------------------->
+<meta charset="utf-8"> <!--COMPATIBILITA UNICODE PER CHROME E FIREFOX-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/myCss.css">
+<!------------------------------------------------------------------------------------------------->
+<script>
+var blu = false;
+var arancione = false;
+var rosso = false;
+var nero = false;
+var viola = false;
+var punteggio = 0;
+var vivo=true;
+var h=0;
+var vinto=false;
+$(document).ready(function(){
+    var altezza=($(window).height())-50;
+    var larghezza=($(window).width())-$(".punteggio").width();
+
+    $(".campo").css({'height':altezza});
+    $(".punteggio").css({'height':altezza});
+    $(".blu").css({'top':'200px'});
+    $(".arancione").css({'top':'400px','left':'220px'});
+    $(".rosso").css({'top':'100px','left':'500px'});
+    $(".viola").css({'top':'500px','left':'400px'});
+    $(".nero").css({'left':'660px'});
+    $(".C1").css({'top':'250px','left':'400px'});
+    $(".C2").css({'top':'200px','left':'-200px'});
+    $(".C3").css({'left':'-100px'});
+    $("#linea").css({'top':altezza});
+
+	$(document).keydown(function(tasto){
+    var tasto = event.keyCode;
+    var pos = $(".giocatore").position(); //pos = posizione giocatore
+    if(!vinto&&vivo){       
+        $("#pt").text("PT:  "+punteggio);
+        if(vivo){ //escludo "H,G,R" 116 = f5
+            switch (tasto){
+                case 65:    //Sinistra  "A"
+                case 37:   //Destra   "Freccia Sinistra"
+                if(!(pos.left-15 < 0)){$(".giocatore").css('left', '-=14');}
+                break;
+                case 87:  //Su   "W"
+                case 38: //Su   "Freccia Su"
+                if(!(pos.top-15 < 0)){$(".giocatore").css('top','-=14');}
+                break;
+                case 68:  //Destra  "D"
+                case 39: //Destra   "Freccia Destra"
+		        if(!(pos.left+15 > larghezza-100)){$(".giocatore").css('left', '+=14');}
+                break;
+                case 83:  //Giu  "S"
+                case 40: //Giu   "Freccia Giu"
+		        if(!(pos.top+15 > altezza-100)){$(".giocatore").css('top','+=14');}
+                break;
+
+                case 71:    //DEBUG: stampa posizione "G"
+                alert(pos.top+"px TOP : "+pos.left+"px LEFT ");
+                break;
+            }
+        }
+        if(punteggio>26){
+          vinto=true;
+            alert("Hai Vinto!");
+            $(".titolo").text("HAI VINTO");
+            $(".punti").css({'color':'lime'});
+        }
+        if(blu==false){ //S
+            if(pos.left < 81.25 && pos.top > 98 && pos.top < 285){
+                $(".blu").attr('src',"img/rb.png");
+                blu=true;
+                punteggio+=7;
+            }
+        }
+        if(rosso==false){
+            if(pos.left >572 && pos.left <=707 && pos.top >15 && pos.top < 180){
+                $(".rosso").attr('src',"img/rr.png");
+                rosso=true;
+                punteggio+=3;
+            }
+        }
+        if(arancione==false){
+            if(pos.left > 235.25 && pos.left < 361.25 && pos.top > 308 && pos.top <490){
+                $(".arancione").attr('src',"img/ra.png");
+                arancione=true;
+                punteggio+=2;
+            }
+        }
+        if(viola==false){
+            if(pos.left > 613.25 && pos.left < 732.25 && pos.top > 405 && pos.top <585){
+                $(".viola").attr('src',"img/rv.png");
+                viola=true;
+                punteggio+=5;
+            }
+        }
+        if(nero==false){
+            if(pos.left > 809.25 && pos.left < 935.25 && pos.top >=0 && pos.top <75){
+                $(".nero").attr('src',"img/rn.png");
+                nero=true;
+                punteggio+=10;
+            }
+        }
+        if(pos.left>193.25 && pos.left< 361.25 && pos.top >126 && pos.top <322 || pos.left >697.25 && pos.left < 851.25 && pos.top > 182 && pos.top < 364 || pos.left > 389.25 && pos.left < 557.25 && pos.top < 112){
+            $(".giocatore").attr('src',"img/CactusMorto.png");
+            vivo=false;
+            $(".titolo").text("SEI MORTO").css({'color':'red'});
+            $(".punti").css({'color':'red'});
+        }
+
+        if(vivo==false){
+            alert("Sei Morto!");
+        }
+    }
+        if(tasto==82){
+            location.reload();
+        }
+        if(tasto==72){ //hitbox
+            if(h %2==0){
+                $("img").css({'border':'2px solid blue'});
+                $(".giocatore").css({'border':'2px solid red'});
+                h++;
+            }else{
+                $("img").css({'border':'none'});
+                $(".giocatore").css({'border':'none'});
+                 h++;
+            }
+        }    
+	});
+});
+//----------------------------------------------------------------------------------
+</script>
+</head>
+<body class="amber accent-2">
+<div class="row">
+  <div class="campo col s9">
+    <img src="img/Cactus.png" id="gioca" class="giocatore">
+    <img src="img/Blu.png" id="pallone" class="blu pallone ">
+    <img src="img/Arancione.png" id="pallone" class="arancione pallone ">
+    <img src="img/Rosso.png" id="pallone" class="rosso pallone ">
+    <img src="img/Nero.png" id="pallone" class="nero pallone ">
+    <img src="img/Viola.png" id="pallone" class="viola pallone ">
+    <img src="img/nemico.png" id="nemico" class="C1 nemico ">
+    <img src="img/nemico.png" id="nemico" class="C2 nemico ">
+    <img src="img/nemico.png" id="nemico" class="C3 nemico ">
+
+  </div>
+
+  <div class="punteggio col s3">
+    <p class="testoM titolo">Punteggio</p>
+    <p class="testoS">Premi "R" per riavviare</p>
+    <p class="testoS">"H" Mostra Hitbox</p>
+	<p class="testoS">"WASD o arrow" Spostamento</p>
+    <p id="pt" class="testoM punti">PT: 0</p>
+    <p id="morti" class="testoS"></p>
+  </div>
+  <hr id="linea">
+</div>
+
+</body>
+</html>

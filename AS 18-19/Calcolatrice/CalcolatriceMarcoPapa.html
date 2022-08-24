@@ -1,0 +1,152 @@
+<!-- MarcoPapa 4Bi 13/10/2018-->
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="CalcolatriceMarcoPapa.css">
+<script>
+//-----------------------------------------------------------------------------------------------------
+function InserimentoNumero(TastoNumero){	
+	document.getElementById("Testo").value+=TastoNumero;
+}
+//-----------------------------------------------------------------------------------------------------
+var Testo ='Testo';
+var segno = document.getElementById(segno);
+var n1;
+var n2;
+var segnopr; 
+var Risultato;
+var potenza=1;
+var i=0;
+
+function InserimentoOperatore(segno) {
+	var aus;
+	document.getElementById("Segno").value = segno;
+	if(segno=='='){
+		n2 = document.getElementById("Testo").value;
+		n1 = parseInt(n1);
+		n2 = parseInt(n2);
+		if(segnopr=='+'){			
+			Risultato = n1 + n2;
+			document.getElementById("Testo").value = Risultato;
+		}
+		if(segnopr=='*'){
+			Risultato = n1 * n2;
+			document.getElementById("Testo").value = Risultato;
+		}
+		if(segnopr=='-'){
+			Risultato = n1 - n2;
+			document.getElementById("Testo").value = Risultato;
+		}
+		if(segnopr=='exp'){
+			for(i=0; i<n2;i++){
+			potenza = potenza * n1;			
+			}	
+			Risultato=potenza;	
+			document.getElementById("Testo").value = Risultato;
+		}
+		if(segnopr=='/'){
+			document.getElementById("Testo").value;
+			if(n1!==0 && n2!==0){
+				Risultato = n1 / n2;
+				document.getElementById("Testo").value = Risultato;
+			}		
+			else if(n1==0){		// 0 si puo dividere
+				document.getElementById("Testo").value = 0;
+			}			
+			else if(document.getElementById("Testo").value==0){	// non si può dividere per 0, stampa errore
+				document.getElementById("Testo").value = "Errore";	
+				alert("Non si possono dividere dei valori per 0");
+			}			
+		}
+	}	
+	else if(segno=='±'){
+		aus = document.getElementById("Testo").value * -1;	
+		document.getElementById("Testo").value = aus;
+	}
+	else if(segno=='.'){
+		aus = document.getElementById("Testo").value +='.';
+		document.getElementById("Testo").value = aus;
+	}
+	else if(segno=='π'){
+		aus = document.getElementById("Testo").value * 3.14;	
+		document.getElementById("Testo").value = aus;
+	}
+	else if(segno=='<'){
+		document.getElementById("Testo").value = document.getElementById("Testo").value.slice(0,-1);
+	}
+	else if(segno=='exp'){		
+		n1 = document.getElementById("Testo").value;
+		document.getElementById("Testo").value ="";		
+		segnopr='exp';
+	}
+	else if(segno=='+'){		
+		n1 = document.getElementById("Testo").value;
+		document.getElementById("Testo").value ="";		
+		segnopr='+';
+	}
+	else if(segno=='√'){		
+		aus = document.getElementById("Testo").value;
+		document.getElementById("Testo").value = Math.sqrt(aus);
+	}
+	else if(segno=='*'){		
+		n1 = document.getElementById("Testo").value;
+		document.getElementById("Testo").value ="";		
+		segnopr='*';
+	}
+	else if(segno=='-'){		
+		n1 = document.getElementById("Testo").value;
+		document.getElementById("Testo").value ="";		
+		segnopr='-';
+	}
+	else if(segno=='/'){		
+		n1 = document.getElementById("Testo").value;
+		document.getElementById("Testo").value ="";		
+		segnopr='/';
+	}	
+}
+//-------------------------------------------------------------------------------------------------------------
+</script>	
+</head>
+<body style="background-color:lightgray">
+<center>
+	<h1 id="Titolo">Calcolatrice 2.0</h1>
+	<div class="Container">
+		<input id="Testo" type="text" readonly></input><input id="Segno" type="text" readonly></input><b>
+		<div class="Riga">
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(7)">7</button>
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(8)">8</button>
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(9)">9</button>
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('*')">*</button>
+			<button class="bottone operando quadrato" id="ce" onclick="location.reload()">CE</button>			
+		</div>
+		<div class="Riga">
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(4)">4</button>
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(5)">5</button>
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(6)">6</button>
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('+')">+</button>
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('*')">*</button>
+		</div>
+		<div class="Riga">
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(1)">1</button>
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(2)">2</button>
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(3)">3</button>	
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('-')">-</button>			
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('/')">/</button>
+		</div>
+		<div class="Riga">
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('±')">±</button>
+			<button class="bottone numero quadrato" onclick="InserimentoNumero(0)">0</button>
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('exp')">exp</button>
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('π')">π</button>
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('√')">√</button>
+		</div>
+		<div class="Riga">
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('<')">undo</button>
+			<button class="bottone operando quadrato" onclick="InserimentoOperatore('.')">.</button>
+			<button class="bottone operando quadrato"id="ug" onclick="InserimentoOperatore('=')">=</button>
+   		</div></b>
+	</div>
+</center>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+<!-- MarcoPapa 4BI 19/02/2019 Versione da NON consegnare -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Import-------------------------------------------------------------------------------->
+<meta charset="utf-8"> <!--COMPATIBILITA UNICODE PER CHROME E FIREFOX-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="cambioimmaginePapa.css">
+<!----------------------------------------------------------------------------------------->
+<script>
+var immagine = 0;
+$(document).ready(function (){
+  $("button").click(function(){
+	if(immagine==0){
+		$("img").attr('src',"img/melograno.jpg");
+		$("h2").text("Melograno");
+	}else if(immagine==1){
+		$("img").attr('src',"img/banana.jpg");
+		$("h2").text("Banana");
+	}else if(immagine==2){
+		$("img").attr('src',"img/anguria.jpg");
+		$("h2").text("Anguria");
+	}else if(immagine==3){
+		$("img").attr('src',"img/pompelmo.jpg");
+		$("h2").text("Pompelmo");
+	}else if(immagine==4){
+		$("img").attr('src',"img/cavolo.jpg");
+		$("h2").text("Cavolo");
+		immagine=-1;
+	}
+	immagine++;
+  });  
+});
+</script>
+</head>
+<h1 class="Titolo grassetto centro">Cambio Immagini</h1>
+<body style="background-color:#ffffcc">
+<center>
+<hr id="linea">
+	<img id="img"src="img/cavolo.jpg"><br>
+	<button id="bottone">Immagine Successiva</button>
+	<h2 class="Titolo2 grassetto centro">Cavolo</h2>
+<hr id="linea">
+</center>
+</body>
+</html>
+

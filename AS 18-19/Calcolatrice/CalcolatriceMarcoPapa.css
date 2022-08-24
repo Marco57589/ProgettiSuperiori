@@ -1,0 +1,92 @@
+.Container{
+	border: 2px solid blue;
+	background-color:white;
+	width: 590px;
+	height: 725px;
+   	font-size:20px;
+	padding: 3px;	
+	background-color:#99ccff;
+}
+.bottone{
+	text-align: center;
+	font-weight: bold;
+    font-size: 16px;  	
+	background-color: white;
+	display: inline-block;
+	margin-top: -50px;	
+}
+.quadrato{
+	height:100px;
+	width:100px;
+	padding: 17px 24px;
+	margin: 5px;
+	border: 2px solid blue;	
+}
+.numero{
+	font-size: 18px;
+	color:blue;
+	font-weight: bold;
+}
+.numero:hover{
+	background-color: #99ccff;
+    color: red;
+}
+.operando{
+	font-size: 18px;
+	color:blue;	
+	font-weight: bold;
+}
+.operando:hover{
+	background-color: #ffff99;
+	color:blue;
+	font-weight: bold;
+}
+#ug{
+	height:100px;
+	width:330px;	
+}
+#ug:hover{
+	background-color: lime;
+    color: blue;	
+}
+#Testo{
+	width: 435px;
+	padding: 3px;
+	height: 100px;
+	font-size:66px;
+	border: 2px solid blue;
+	text-align: right;
+	margin-top:22px;  
+	margin-left:3px;
+	position:relative;
+	background-color:white;	
+}
+#Testo:hover{	
+    color: red;	
+}
+#Segno{
+	border: 2px solid blue;
+	text-align: center;
+	background-color:white;
+	font-size:66px;
+	margin: 5px;
+	height:100px;
+	width:100px;
+	padding:3px;
+	margin-left:3px; 
+	font-weight: bold;	
+}
+#Segno:hover{
+	color:red;
+}
+#Titolo{
+	color: Blue; 
+	text-align: center;
+	font-size: 40px;
+	font-family:Helvetica;
+	font-weight: bold;	
+}
+#ce:hover{
+	background-color: red;
+    color: white;	
+}

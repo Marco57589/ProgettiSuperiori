@@ -1,0 +1,93 @@
+<!-- MarcoPapa 4BI 23/10/2018-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <!--COMPATIBILITA UNICODE PER CHROME E FIREFOX-->
+<link rel="stylesheet" type="text/css" href="ContaLettereMarcoPapa.css">
+<script>
+//-----------------------------------------------------------------------------------------------------
+
+var aus;  //TESTO
+var aus2;	//PAROLA
+var aus3;	//LETTERA
+var String; //STRINGA ELIMINAZIONE SPAZIO
+var nl = 1; //numero lettera
+var np = 1; //numero parola
+var i = 0; //CONTATORE
+var x = 0; //passa alla lettera successiva della parola da cercare
+
+function ContaParola(){
+	aus = document.getElementById("Testo").value;
+	aus2 = document.getElementById("Parola").value;
+	if(aus==""){
+		alert("Compila il campo TESTO inserendo almeno una lettera o una parola");
+	}
+	else if(aus2==""){
+		alert("Inserisci la parola da contare");
+	}
+	else{	
+		String = aus.toLowerCase();
+		aus = String;		
+		for(i=0;i<aus.length; i++){
+			if(aus.charAt(i)==aus2.charAt(x)){
+				x++;
+				if(x==aus2.length){
+					alert("TROVATE: " +np);
+					np++;
+					x=0;
+				}
+			}	
+			else{x=0;}
+		}
+	np--;
+	alert("La parola ==> | " +aus2+ " | <== é uscita ==> | " +np+ " | <== volte" );
+	np=0;
+	}
+}
+function ContaLettera(){
+	aus = document.getElementById("Testo").value;
+	aus3 = document.getElementById("Lettera").value;
+	
+	if(aus==""){
+		alert("Compila il campo TESTO inserendo almeno una lettera o una parola");
+	}
+	else if(aus3==""){
+		alert("Inserisci la lettera da contare");
+	}
+	else{	
+		String = aus.toLowerCase();
+		aus = String;
+		for(i=0;i<aus.length; i++){
+			String = aus.replace(" ","");
+			aus = String.replace(" ","");	
+			if(aus.charAt(i)==aus3){
+				nl++;
+			}
+		}	
+	nl=nl-1;
+	alert("La lettera ==> | " +aus3+ " | <== é uscita ==> | " +nl+ " | <== volte" );
+	nl=0;
+	}
+}	
+
+//-------------------------------------------------------------------------------------------------------------
+</script>	
+</head>
+<body style="background-color:#d9ffb3">
+<center>
+	<h1 id="Titolo">Conta Parole/Lettere</h1>
+	<div class="Container">
+		<input id="Testo" type="text" maxlength="35"  placeholder="Inserisci il testo"></input><br>  <!--MASSIMO 35 CARATTERI-->
+		<input id="Parola" type="text" maxlength="15" placeholder="Parola da contare"></input>
+		<input id="Lettera" type="text" maxlength="1" placeholder="Lettera da contare"></input><br><br>
+		<b>
+		<div class="Riga">
+			<button class="bottone Conta" id="Conta" onclick="ContaParola()">Conta La Parola</button>
+			<button class="bottone" id="Reset" onclick="location.reload()">PULISCI</button>
+			<button class="bottone Conta" id="Conta" onclick="ContaLettera()">Conta Le Lettere</button>						
+		</div>	
+	</div>	
+</center>
+</body>
+</html>
+

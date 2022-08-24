@@ -1,0 +1,166 @@
+<!-- MarcoPapa 4BI 07/02/2019 Versione da consegnare -->
+<!--  NB: le dimensioni del campo sono fatte per uno schermo 4:3-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <!--COMPATIBILITA UNICODE PER CHROME E FIREFOX-->
+<link rel="stylesheet" type="text/css" href="LabPistaMarcoPapa.css">
+<script>
+//-----------------------------------------------------------------------------------------------------
+
+var i = 0;
+var j = 0;
+var matCampo = [
+	[3,3,3,0,3,3,3,3,3,3,3,0,0,3,3,3,3,3,3,],
+	[3,0,3,0,3,0,0,0,0,0,3,0,0,3,0,0,0,0,3,],
+	[3,0,3,0,3,3,0,0,0,0,3,0,0,3,0,0,0,0,3,],
+	[3,0,3,0,0,3,0,0,3,3,3,0,0,3,0,0,0,0,3,],
+	[3,0,3,3,3,3,0,0,3,0,0,0,0,3,0,3,3,3,3,],
+	[3,0,0,0,0,0,0,0,3,0,3,3,3,3,0,3,0,0,0,],
+	[3,0,0,0,0,0,0,0,3,0,3,0,0,0,0,3,3,3,3,],
+	[3,3,3,3,3,3,0,0,3,0,3,0,0,0,0,0,0,0,3,],
+	[0,0,0,0,0,3,0,0,3,3,3,0,0,0,0,0,0,0,3,],
+	[0,0,0,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,3,],
+	[0,3,3,3,0,0,0,0,5,0,0,0,0,3,3,3,3,3,3,],
+	[0,3,0,0,0,3,3,3,2,4,3,0,0,3,0,0,0,0,0,],
+	[0,3,3,3,3,3,0,0,5,0,3,3,3,3,0,0,0,0,0,],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,],
+];	
+	document.write("<div class='c1'>");
+		document.write("<p class='testo'>Giri<p class='testo' id='giri'> 0 </p></p>");
+		document.write("<hr id='spazio'>");
+		document.write("<p class='testo'>Tempo<p class='testo' id='tempo'> 0 </p></p>");
+		document.write("<hr id='spazio'>");
+		document.write("<p class='testo'>Tempo Migliore<p class='testo' id='tempo'> 0 </p></p>");
+		document.write("<hr id='spazio'>");
+		document.write("<p class='testo'>Tempo Peggiore<p class='testo' id='tempo'> 0 </p></p>");
+		document.write("<hr id='spazio'>");
+		document.write("<button class='bottone' id='menu' onclick=window.open('home.html','_self')>Menu</button>");
+	document.write("</div>");
+	document.write("<center>");
+	document.write("<table id='tabella'>");
+	
+	
+	for(i=0; i<14;i++){
+		document.write("<tr>");
+		for(j=0; j<19; j++){
+			document.write("<td>");
+			
+			if(matCampo[i][j]==0){
+				document.write("<img id='img'src='\immagini/cespuglio.jpg'>");
+			}
+			if(matCampo[i][j]==2){
+				document.write("<img id='img' src='\immagini/m3.png'>");
+			}
+			if(matCampo[i][j]==3){
+				document.write("<img id='img' src='\immagini/terreno.jpg'>");
+			}
+			if(matCampo[i][j]==4){
+				document.write("<img id='img' src='\immagini/terreno.jpg'>");
+			}
+			if(matCampo[i][j]==5){
+				document.write("<img id='img' src='\immagini/segno.jpg'>");
+			}
+		}
+		document.write("</tr>");
+	}
+	document.write("</table>");
+	document.write("</center>");
+	
+var colonna = 8;
+var riga = 11;
+var immagine = 217;
+var giri = 0;
+
+function gioco(event){
+	var tasto = event.keyCode;
+	var x = document.getElementById("tabella");
+
+	if(matCampo[riga][colonna]==4){
+		giri++;
+		document.getElementById("giri").innerHTML = giri;
+	}
+	if(tasto==40 || tasto==39 || tasto==38 || tasto==37){
+		alert("Attenzione, i tasti per lo spostamento sono W-A-S-D");
+	}
+	switch(tasto){
+		case 65: // sinistra "w"
+			if(colonna>0){
+				if(matCampo[riga][colonna-1]==3 || matCampo[riga][colonna-1]==5 || matCampo[riga][colonna-1]==2 || matCampo[riga][colonna-1]==4){ 			
+			
+						document.images[immagine].src="\immagini/segno.jpg";
+				
+						document.images[immagine].src="\immagini/terreno.jpg";
+			
+					document.images[immagine-=1].src="\immagini/m3.png";	
+					colonna--;					
+				}
+			}
+			else{
+				
+			}
+		break;
+		case 68://destra X "d"
+			if(colonna<19){
+				if(matCampo[riga][colonna+1]==3 || matCampo[riga][colonna+1]==5){
+					
+						document.images[immagine].src="\immagini/segno.jpg";
+				
+						document.images[immagine].src="\immagini/terreno.jpg";
+				
+					document.images[immagine+=1].src="\immagini/m1.png";	
+					colonna++;
+				}
+			}
+			else{
+
+			}
+			
+		break;
+		case 87://su X "w"
+			if(riga>0){				
+				if(matCampo[riga-1][colonna]==3 || matCampo[riga-1][colonna]==5 || matCampo[riga-1][colonna]==2){
+		
+						document.images[immagine].src="\immagini/segno.jpg";
+		
+						document.images[immagine].src="\immagini/terreno.jpg";
+				
+					document.images[immagine-=19].src="\immagini/m4.png";	
+					riga--;
+				}
+			}
+			else{
+				
+			}
+		break;
+		case 83://giu X "s"
+			if(riga<14){
+				if(matCampo[riga+1][colonna]==3 || matCampo[riga+1][colonna]==5 || matCampo[riga+1][colonna]==2){
+			
+						document.images[immagine].src="\immagini/segno.jpg";
+					
+						document.images[immagine].src="\immagini/terreno.jpg";
+				
+					document.images[immagine+=19].src="\immagini/m2.png";	
+					riga++;
+				}
+			}
+			else{
+
+			}
+		break;
+	}
+}
+
+</script>	
+</head>
+<!----------------------------------------------------------------------------------------------------------------------------->
+<br>
+<body style="background-color:#d9ffb3"  onkeydown="gioco(event)">
+	<center>
+	</center>
+</body>
+</html>
+
+
+

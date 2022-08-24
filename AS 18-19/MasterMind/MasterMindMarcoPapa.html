@@ -1,0 +1,108 @@
+<!-- MarcoPapa 4BI 9/01/2019  VERSIONE DA CONSEGNARE-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <!--COMPATIBILITA UNICODE PER CHROME E FIREFOX-->
+<link rel="stylesheet" type="text/css" href="MasterMindMarcoPapa.css">
+<script>
+//-----------------------------------------------------------------------------------------------------
+var i = 0;
+var j = 0;
+
+var Soluzione =  ["red","lime","white","yellow"]; //modificare la soluzione scambiando i nomi dei colori (red,black,lime,yellow,white,purple)
+var Tavolozza = ["red","black","lime","yellow","white","purple"];
+	
+	document.write("<center>");
+	document.write("<h1 id=Titolo align=center >MasterMind</h1>");
+	document.write("<div class=Container>");
+	document.write("<table id=Tabella><br>");
+
+	for(i=0; i<6; i++){
+			document.write("<tr>");
+		for(j=0; j<6; j++){
+			if(j==0){
+				document.write("<td id=CM>");
+				document.write("</td>");
+			}else if(j==5){
+				document.write("<td id=CM><input type=text id=r"+i+"c"+j+" maxlength=1 readonly></input></td>");
+			}else{
+				document.write("<td id=Cella><input type=text id=r"+i+"c"+j+" maxlength=1 readonly></input></td>");
+			}
+	}
+		document.write("</tr>");
+	}
+	document.write("</table>");
+	document.write("<br>");
+	document.write('<button class="bottonecolore bottone1 " id=tavolozza onclick=Controllo("red") >Rosso</button>');
+	document.write('<button class="bottonecolore bottone2 " id=tavolozza onclick=Controllo("black")>Nero</button>');
+	document.write('<button class="bottonecolore bottone3 " id=tavolozza onclick=Controllo("lime")>Verde</button>');
+	document.write('<button class="bottonecolore bottone4 " id=tavolozza onclick=Controllo("yellow")>Giallo</button>');
+	document.write('<button class="bottonecolore bottone5 " id=tavolozza onclick=Controllo("white")>Bianco</button>');
+	document.write('<button class="bottonecolore bottone6 " id=tavolozza onclick=Controllo("purple")>Viola</button>');
+	document.write("<br>");
+	document.write("<button class=bottone id=Reset onclick=location.reload()>Reset</button>");
+	document.write("</div>");
+	document.write("</center>");
+	document.write("<p id=Testo> Legenda: </p>");
+	document.write("<p id=Testo> | O | Colore presente in posizione giusta</p>");
+	document.write("<p id=Testo> | X | Colore presente in posizione errata </p>");
+	var Tabella = document.getElementById("Tabella");
+	
+var colonna = 1;	
+var giusto = 0;
+var riga = 0;
+var k = 0;
+function Controllo(colore){
+	
+	document.getElementById("tavolozza").value = colore;
+
+	if(colonna<5){
+		Tabella.rows[riga].cells[colonna].style.backgroundColor=colore;
+		colonna++;
+	}
+	if(colonna==5){
+		ControlloSoluzione();
+		riga++;
+		colonna=1;		
+	}
+}
+
+function ControlloSoluzione(){
+	var riga;
+	var colonna;
+	var nuguali = 0;
+	var cc; //controllo colore
+	var k=0;
+	
+	for(riga=0; riga<6; riga++){	
+		Tabella.rows[riga].cells[5].innerHTML="";
+		Tabella.rows[riga].cells[0].innerHTML="";
+		for(colonna=1; colonna<5; colonna++){
+			cc=Tabella.rows[riga].cells[colonna].style.backgroundColor;
+				if(cc == Soluzione[colonna-1]){		
+					Tabella.rows[riga].cells[5].innerHTML+="O"; // colore presente in posizione giusta
+					nuguali++;
+				}else{
+					nuguali=0;
+					for(k=0; k<Soluzione.length; k++){
+						if(cc==Soluzione[k]){
+							Tabella.rows[riga].cells[0].innerHTML+="X"; //colore presente ma in posizione errata		
+						}	
+					}
+				}
+				if(nuguali==4){
+					Tabella.rows[riga].cells[5].innerHTML="✅"; // corretto
+					nuguali=nuguali-4;
+				}
+		}	
+	}
+	nuguali=0;	
+}
+
+//-------------------------------------------------------------------------------------------------------------
+</script>	
+</head>
+<body style="background-color:#d9ffb3">
+</body>
+</html>
+

@@ -1,0 +1,196 @@
+<!-- MarcoPapa 4BI 26/02/2019 Versione da consegnare -->
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Import-------------------------------------------------------------------------------->
+<meta charset="utf-8"> <!--COMPATIBILITA UNICODE PER CHROME E FIREFOX-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="cambioimmaginePapa.css">
+<!----------------------------------------------------------------------------------------->
+<script>
+
+var tempo;
+var immagini=5;
+var nomi = ["Anguria","Banana","Olio","Ollio","Melograno","Pompelmo","Cavolo","Cambio Immagini"];
+var ni = 8; //NUMERO IMMAGINI
+//--------------------------------------
+	$(document).ready(function (){
+		$("#Stop").click(function(){
+		 clearInterval(tempo);
+		});
+//---------------------------------------------------------------------------------------------------------------------------------
+	$("#Destra").click(function(){
+		var velocità = document.getElementById('va').value;
+		var durataimmagine = document.getElementById('dm').value;
+		velocità *= 1000;
+		durataimmagine *= 1000;
+		durataimmagine += 100;
+		if(velocità>999 && velocità <3001 && durataimmagine>999 && durataimmagine <7101 && velocità<=durataimmagine){
+		
+			document.getElementById("errore").innerHTML ="";
+			document.getElementById("va").style.borderColor = "green";
+			document.getElementById("dm").style.borderColor = "green";
+			
+			clearInterval(tempo);
+			tempo = setInterval(function(){
+					if(immagini<ni){
+						immagini++;
+						$("img").hide();
+						$("img").fadeIn(velocità);
+						$("img").attr('src',"img/"+immagini+".jpg");
+						$("h2").text(nomi[immagini-1]);						
+					}else{
+						$("h2").text(nomi[immagini-1]);					
+						immagini=1;
+						$("img").hide();
+						$("img").fadeIn(velocità);
+						$("img").attr('src',"img/"+immagini+".jpg");
+						$("h2").text(nomi[immagini-1]);
+					}
+			}, durataimmagine);
+		}else{
+			document.getElementById("errore").innerHTML ="";
+			clearInterval(tempo);
+			if(document.getElementById('va').value==0){
+				document.getElementById("va").style.borderColor = "red"; 
+				document.getElementById("errore").innerHTML += "*La durata dell'animazione deve essere compresa tra 1 e 3!<br>";
+			}			
+			if(document.getElementById('dm').value==0){
+				document.getElementById("dm").style.borderColor = "red";
+				document.getElementById("errore").innerHTML += "*La durata dell'immagine deve essere compresa tra 1 e 7!<br>";
+			}
+			if(durataimmagine<velocità){
+				document.getElementById("errore").innerHTML += "*La durata dell'immagine deve essere superiore o uguale alla velocità dell'animazione!<br>";
+				document.getElementById("dm").style.borderColor = "red";
+			}			
+			document.getElementById("Stop").focus(); //Evidenzio il tasto stop in caso di errore
+		}
+	});
+//-----------------------------------------------------------------------------------------------------------------------------------
+	$("#Sinistra").click(function(){
+		var velocità = document.getElementById('va').value;
+		var durataimmagine = document.getElementById('dm').value;
+		durataimmagine *= 1000;
+		durataimmagine += 100;
+		velocità *= 1000;
+
+		if(velocità>999 && velocità <3001 && durataimmagine>999 && durataimmagine <7101 && velocità<=durataimmagine){
+
+			document.getElementById("errore").innerHTML ="";
+			document.getElementById("va").style.borderColor = "green";
+			document.getElementById("dm").style.borderColor = "green";
+			
+			clearInterval(tempo);
+			tempo = setInterval(function(){
+				if(immagini>1){
+					immagini--;
+					$("img").hide();
+					$("img").fadeIn(velocità);
+					$("img").attr('src',"img/"+immagini+".jpg");
+					$("h2").text(nomi[immagini-1]);					
+				}else{
+					$("h2").text(nomi[immagini-1]);	
+					immagini=ni;
+					$("img").hide();
+					$("img").fadeIn(velocità)
+					$("img").attr('src',"img/"+immagini+".jpg");
+					$("h2").text(nomi[immagini-1]);
+				}
+			}, durataimmagine);
+		}else{
+			document.getElementById("errore").innerHTML ="";
+			clearInterval(tempo);
+			if(document.getElementById('va').value==0){
+				document.getElementById("va").style.borderColor = "red"; 
+				document.getElementById("errore").innerHTML += "*La durata dell'animazione deve essere compresa tra 1 e 3!<br>";
+			}			
+			if(document.getElementById('dm').value==0){
+				document.getElementById("dm").style.borderColor = "red";
+				document.getElementById("errore").innerHTML += "*La durata dell'immagine deve essere compresa tra 1 e 7!<br>";
+			}
+			if(durataimmagine<velocità){
+				document.getElementById("errore").innerHTML += "*La durata dell'immagine deve essere superiore o uguale alla velocità dell'animazione!<br>";
+				document.getElementById("dm").style.borderColor = "red";
+			}			
+			document.getElementById("Stop").focus(); //Evidenzio il tasto stop in caso di errore
+		}
+	});
+//----------------------------------------------------------------------------------------------------------------------------
+// Spostamento singolo verso sinistra (immagini-1)
+		$("#Sin").click(function(){
+		var velocità = document.getElementById('va').innerHTML;
+			setTimeout(function(){
+				if(immagini>1){	
+					immagini--;		
+					$("img").hide();
+					$("img").fadeIn(velocità);		
+					$("img").attr('src',"img/"+immagini+".jpg");
+					$("h2").text(nomi[immagini-1]);					
+				}else{
+					$("h2").text(nomi[immagini-1]);	
+					immagini=ni;
+					$("img").hide();
+					$("img").fadeIn(velocità);
+					$("img").attr('src',"img/"+immagini+".jpg");
+					$("h2").text(nomi[immagini-1]);	
+				}
+			}, 1000);
+		});
+//-------------------------------------------------------------------------------------
+// Spostamento singolo verso destra (immagini+1)
+		$("#Des").click(function(){
+		var velocità = document.getElementById('va').innerHTML;
+			setTimeout(function(){
+				if(immagini<ni){
+					immagini++;	
+					$("img").hide();
+					$("img").fadeIn(velocità);
+					$("img").attr('src',"img/"+immagini+".jpg");
+					$("h2").text(nomi[immagini-1]);						
+				}else{
+					$("h2").text(nomi[immagini-1]);	
+					immagini=1;
+					$("img").hide();
+					$("img").fadeIn(velocità);
+					$("img").attr('src',"img/"+immagini+".jpg");
+					$("h2").text(nomi[immagini-1]);	
+				}
+			}, 1000);
+		});
+
+	});
+//-------------------------------------------------------------------------------------
+</script>
+</head>
+<h1 class="Titolo grassetto centro">Cambio Immagini</h1>
+<body style="background-color:#ffffcc">
+<center>
+<hr id="linea">
+<div class="Container">
+	<div class="section">
+		<button id="Sin" class="bl1 grassetto  btn-small left"> < </button>
+			<img id="img"src="img/blue.jpg">			
+		<button id="Des" class="bl2 grassetto  btn-small right"> > </button>
+		<h2 class="Titolo2 grassetto">Blu</h2>
+	</div>
+	<div class="Container2">
+		<button id="Sinistra" class="bottone grassetto "> Sinistra </button>
+		<button id="Stop" class="bottone grassetto stop "> Stop </button>
+		<button id="Destra" class="bottone grassetto  "> Destra </button>
+	</div>	
+</div>
+	
+<div class="row">
+	<div class="section col s4 offset-s4">		
+		<input class="grassetto destra" type="number" min="1" max="3" id="va" placeholder="Velocità animazione 'in secondi'( 1:Veloce  2: Normale 3: Lento)"></input>
+		<input class="grassetto destra" type="number" min="1" max="7" id="dm" placeholder="Tempo tra un'immagine e l'altra in secondi (min 1 max 7)"></input>
+	</div>	
+</div> 
+<p id="errore"></p>
+<hr id="linea">
+	
+
+</center>
+</body>
+</html>

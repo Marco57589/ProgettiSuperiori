@@ -1,0 +1,110 @@
+.Container{
+	border: 2px solid blue;
+	background-color: #1affff;
+	width: 500px;
+	height: 635px;
+   	font-size:20px;
+}
+.bottone{	 
+	height:70px;
+	width: 450px;
+	border:none;
+}
+.bottoneC{
+	height:70px;
+	width:70px;
+	background-color:lime;
+	font-weight: bold;		
+}
+.bottonecolore{
+	height:70px;
+	width:70px;
+	border: 3px solid blue;
+	margin:2px;
+	padding:5px;
+	text-align:center;	
+	border-collapse: collapse;
+}
+.bottone1{
+	background-color:red;
+	color:white; 
+	font-weight: bold;	
+}
+.bottone2{
+	background-color:black;
+	color:red; 
+	font-weight: bold;	
+}
+.bottone3{
+	background-color:lime;
+	color:blue;
+	font-weight: bold;		
+}
+.bottone4{
+	background-color:yellow;
+	color:blue; 
+	font-weight: bold;	
+}
+.bottone5{
+	background-color:white;
+	color:black; 
+	font-weight: bold;	
+}
+.bottone6{
+	background-color:purple;
+	color:white; 
+	font-weight: bold;	
+}
+td {
+	border: 3px solid blue;
+	padding:5px;
+	text-align:center;	
+}
+input{
+	background-color:inherit;
+	width:99%;
+	height:99%;
+	text-align: center;
+	font-weight: bold;
+    font-size: 25px; 
+	border: 0px solid;
+}
+table{
+	border-collapse: collapse;
+	position:relative;
+}
+#Cella{
+	height:60px;
+	width:60px;
+}
+#CM{
+	height:60px;
+	width:60px;
+	background-color:orange;
+	border: 3px solid blue;
+}
+#Titolo{
+	color: Blue; 
+	font-size: 40px;
+	font-weight: bold;	
+	font-family:Arial;
+	text-align: center;
+}
+#Testo{
+	color: Blue; 
+	font-size: 20px;
+	font-weight: bold;	
+	font-family:Arial;
+	text-align: center;
+}
+#Reset{
+	background-color: #1affff;
+    color: yellow;	
+	font-size: 30px;
+	color:blue;
+	font-weight: bold;	
+}
+#Reset:hover{
+	background-color: red;
+    color: white;	
+}

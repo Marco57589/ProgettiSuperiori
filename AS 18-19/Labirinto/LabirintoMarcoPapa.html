@@ -1,0 +1,165 @@
+<!-- MarcoPapa 4BI 04/02/2019 Versione da consegnare -->
+<!--  NB: le dimensioni del campo sono fatte per uno schermo 4:3-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <!--COMPATIBILITA UNICODE PER CHROME E FIREFOX-->
+<link rel="stylesheet" type="text/css" href="LabPistaMarcoPapa.css">
+<script>
+//-----------------------------------------------------------------------------------------------------
+
+var i = 0;
+var j = 0;
+var matCampo = [
+	[2,3,3,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,],
+	[0,0,3,0,3,3,3,3,3,3,3,3,0,3,0,3,0,0,3,],
+	[0,0,3,0,0,3,0,0,3,0,3,0,0,3,3,3,0,0,3,],
+	[0,0,3,0,0,3,0,0,3,3,3,0,0,3,0,0,0,0,3,],
+	[3,3,3,0,0,3,3,0,3,0,0,0,3,3,0,3,3,3,0,],
+	[3,0,0,3,0,3,0,0,3,0,3,0,3,0,0,0,0,3,0,],
+	[3,0,0,3,0,3,0,0,3,3,3,0,3,3,3,3,3,3,3,],
+	[3,3,3,3,3,3,0,0,3,0,0,0,3,0,0,0,0,0,3,],
+	[3,0,0,0,0,0,0,0,3,0,3,3,3,0,0,3,3,3,3,],
+	[3,0,0,3,3,3,3,3,3,0,3,0,3,3,0,3,0,0,0,],
+	[3,3,3,3,0,0,0,0,3,0,3,3,0,3,3,3,0,3,3,],
+	[0,3,0,0,0,3,3,3,3,0,0,0,0,3,0,0,0,0,3,],
+	[0,3,3,3,3,3,0,0,0,3,3,3,3,3,3,3,3,3,3,],
+	[0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,],
+];	
+	document.write("<div class='c1'>");
+		document.write("<p class='testo'>Passi<p class='testo' id='spostamenti'> 0 </p></p>");
+		document.write("<hr id='spazio'>");
+		document.write("<p class='testo'>Tempo<p class='testo' id='tempo'> 0 </p></p>");
+		document.write("<hr id='spazio'>");
+		document.write("<p class='testo'>Tempo Migliore<p class='testo' id='tempom'> 0 </p></p>");
+		document.write("<hr id='spazio'>");
+		document.write("<p class='testo'>Tempo Peggiore<p class='testo' id='tempop'> 0 </p></p>");
+		document.write("<hr id='spazio'>");
+		document.write("<button class='bottone' id='menu' onclick=window.open('home.html','_self')>Menu</button>");
+	document.write("</div>");
+	document.write("<center>");
+	document.write("<table id='tabella'>");
+	
+	for(i=0; i<14;i++){
+		document.write("<tr>");
+		for(j=0; j<19; j++){
+			document.write("<td>");
+			if(matCampo[i][j]==0){
+				document.write("<img id='img'src='\immagini/cespuglio.jpg'>");
+			}
+			if(matCampo[i][j]==2){
+				document.write("<img id='img' src='\immagini/m1.png'>");
+			}
+			if(matCampo[i][j]==3){
+				document.write("<img id='img' src='\immagini/terreno.jpg'>");
+			}
+		}
+		document.write("</tr>");
+	}
+	document.write("</table>");
+	document.write("</center>");
+	
+var colonna = 0;
+var riga = 0;
+var immagine = 0;
+var np = -1; //numero passi
+var t = new Date();
+
+
+function gioco(event){
+	var t1 = new Date();
+	var tempo = document.getElementById("tempo").innerHTML = (t1.getTime()-t.getTime())/1000;
+	
+	var tasto = event.keyCode;
+	var x = document.getElementById("tabella");
+	
+	var tm = document.getElementById("tempom").innerHTML;
+	if(tm < tempo){
+		document.getElementById("tempom").innerHTML = tempo;
+	}
+	
+	
+	if(colonna==9 && riga ==12){
+		alert("Congratulazioni, Sei scappato dal labirinto");
+		riga = 0;
+		colonna = 0;
+		t = new Date();
+		t1 = new Date();
+		immagine = 0;
+		document.images[immagine].src="\immagini/terreno.jpg";
+		//window.open('home.html','_self');
+	}
+	if(tasto==40 || tasto==39 || tasto==38 || tasto==37){
+		alert("Attenzione, i tasti per lo spostamento sono W-A-S-D");
+	}
+	
+	switch(tasto){
+		case 65: // sinistra "w"
+			if(colonna>0){
+				if(matCampo[riga][colonna-1]==3){ 
+					document.images[immagine].src="\immagini/terreno.jpg";
+					document.images[immagine-=1].src="\immagini/m3.png";	
+					colonna--;
+					np++;
+					document.getElementById("spostamenti").innerHTML = np+1;
+				}
+			}
+			else{
+				
+			}
+		break;
+		case 68://destra X "d"
+			if(colonna<19){
+				if(matCampo[riga][colonna+1]==3){
+					document.images[immagine].src="\immagini/terreno.jpg";
+					document.images[immagine+=1].src="\immagini/m1.png";	
+					colonna++;
+					np++;
+					document.getElementById("spostamenti").innerHTML = np+1;
+				}
+			}
+			else{
+
+			}
+			
+		break;
+		case 87://su X "w"
+			if(riga>0){				
+				if(matCampo[riga-1][colonna]==3){
+					document.images[immagine].src="\immagini/terreno.jpg";
+					document.images[immagine-=19].src="\immagini/m4.png";	
+					riga--;
+					np++;
+					document.getElementById("spostamenti").innerHTML = np+1;
+				}
+			}
+			else{
+				
+			}
+		break;
+		case 83://giu X "s"
+			if(riga<matCampo.length && matCampo[riga+1][colonna]==3){
+				document.images[immagine].src="\immagini/terreno.jpg";
+				document.images[immagine+=19].src="\immagini/m2.png";	
+				riga++;
+				np++;
+				document.getElementById("spostamenti").innerHTML = np+1;
+			}
+			else{
+
+			}
+		break;
+	}
+}
+</script>	
+</head>
+<!----------------------------------------------------------------------------------------------------------------------------->
+<br>
+<body style="background-color:#d9ffb3"  onkeydown="gioco(event)">
+	<center>
+	</center>
+</body>
+</html>
+
+
+

@@ -1,0 +1,168 @@
+<!-- MarcoPapa 4BI 15/01/2019  VERSIONE DA CONSEGNARE-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <!--COMPATIBILITA UNICODE PER CHROME E FIREFOX-->
+<link rel="stylesheet" type="text/css" href="formAnalisiMarcoPapa.css">
+<script>
+
+function Controllo(){
+document.getElementById("errori").innerHTML ="";	
+document.getElementById("errori2").innerHTML ="";	
+var corretto = 0;
+corretto==0;
+var nome = document.getElementById('nome').value;
+var cognome = document.getElementById('cognome').value;
+var datanascita = document.getElementById('ddn').value;
+var provincia = document.getElementById('provincia').value;
+var indirizzo = document.getElementById('indirizzo').value;
+var citta = document.getElementById('citta').value;
+var telefono = document.getElementById('telefono').value;
+var email = document.getElementById('email').value;
+var codfis = document.getElementById('cf').value;
+var cap = document.getElementById('cap').value;
+
+ //se tutte le opzioni sono corrette invia il modulo
+//------------------- PATTERN -----------------------------------------------------------
+var csl; //Controllo Solo Lettere 		Nome Cognome Citta Provincia
+var SoloLettere = /^[A-Za-z]{2,50}$/; 	//valore minimo 2, valore massimo 50
+
+var ctl; //Controllo Telefono
+var Telefono = /^[0-9]{9}/;
+
+var cem; //Controllo email			
+var Email = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$/;
+
+var ci; //Controllo Indirizzo   	Sorgente Espressione: http://regexlib.com/REDetails.aspx?regexp_id=384
+var Indirizzo = /^[a-zA-Z0-9&#192;&#193;&#194;&#195;&#196;&#197;&#198;&#199;&#200;&#201;&#202;&#203;&#204;&#205;&#206;&#207;&#208;&#209;&#210;&#211;&#212;&#213;&#214;&#216;&#217;&#218;&#219;&#220;&#221;&#223;&#224;&#225;&#226;&#227;&#228;&#229;&#230;&#231;&#232;&#233;&#234;&#235;&#236;&#237;&#238;&#239;&#241;&#242;&#243;&#244;&#245;&#246;&#248;&#249;&#250;&#251;&#252;&#253;&#255;\.\,\-\/\']+[a-zA-Z0-9&#192;&#193;&#194;&#195;&#196;&#197;&#198;&#199;&#200;&#201;&#202;&#203;&#204;&#205;&#206;&#207;&#208;&#209;&#210;&#211;&#212;&#213;&#214;&#216;&#217;&#218;&#219;&#220;&#221;&#223;&#224;&#225;&#226;&#227;&#228;&#229;&#230;&#231;&#232;&#233;&#234;&#235;&#236;&#237;&#238;&#239;&#241;&#242;&#243;&#244;&#245;&#246;&#248;&#249;&#250;&#251;&#252;&#253;&#255;\.\,\-\/\' ]+$/;
+
+var cf; //Controllo codice Fiscale  Sorgente Espressione: https://www.regextester.com/97069
+var Codicefiscale = /^[A-Za-z]{6}[0-9LMNPQRSTUV]{2}[A-Za-z]{1}[0-9LMNPQRSTUV]{2}[A-Za-z]{1}[0-9LMNPQRSTUV]{3}[A-Za-z]{1}$/g;
+
+var ccap; //Controllo Cap
+var Cap = /^[0-9]{5}$/;
+
+//------------------- CONTROLLO CAMPI ---------------------------------------------------------------------------------------------------------------------------------
+
+	csl = provincia.match(SoloLettere); // csl = controllo solo lettere
+	if(csl == null){document.getElementById('provincia').style.borderColor = "red"; document.getElementById("errori").innerHTML += "| *Provincia ";}
+	else{ document.getElementById('provincia').style.borderColor = "lime"; corretto++;}
+		
+	csl = nome.match(SoloLettere);
+	if(csl == null){document.getElementById('nome').style.borderColor = "red"; document.getElementById("errori").innerHTML += "|  *Nome  ";}
+	else{ document.getElementById('nome').style.borderColor = "lime"; corretto++;}
+	
+	csl = cognome.match(SoloLettere);
+	if(csl == null){document.getElementById('cognome').style.borderColor = "red"; document.getElementById("errori").innerHTML += "| *Cognome  ";}
+	else{ document.getElementById('cognome').style.borderColor = "lime"; corretto++;}
+	
+	csl = citta.match(SoloLettere);
+	if(csl == null){document.getElementById('citta').style.borderColor = "red";document.getElementById("errori").innerHTML += "|  *Città  ";}
+	else{ document.getElementById('citta').style.borderColor = "lime"; corretto++;}
+	
+	ctl = telefono.match(Telefono);
+	if(ctl == null){document.getElementById('telefono').style.borderColor = "red"; document.getElementById("errori").innerHTML += "|  *Numero di Telefono  ";}
+	else{ document.getElementById('telefono').style.borderColor = "lime"; corretto++;}
+	
+	ci = indirizzo.match(Indirizzo);
+	if(ci == null){document.getElementById('indirizzo').style.borderColor = "red"; document.getElementById("errori2").innerHTML += "|  *Indirizzo  ";}
+	else{ document.getElementById('indirizzo').style.borderColor = "lime"; corretto++;}
+	
+	cf = codfis.match(Codicefiscale);
+	if(cf == null){document.getElementById('cf').style.borderColor = "red"; document.getElementById("errori2").innerHTML += "|  *Codice Fiscale  ";}
+	else{ document.getElementById('cf').style.borderColor = "lime"; corretto++;}	
+	
+	cem = email.match(Email);
+	if(cem == null){document.getElementById('email').style.borderColor = "red"; document.getElementById("errori2").innerHTML += "|  *Email  ";}
+	else{ document.getElementById('email').style.borderColor = "lime"; corretto++;}	
+	
+	ccap = cap.match(Cap);
+	if(ccap == null){document.getElementById('cap').style.borderColor = "red"; document.getElementById("errori2").innerHTML += "|  *Cap  ";}
+	else{ document.getElementById('cap').style.borderColor = "lime"; corretto++;}	
+		
+	document.getElementById('esami').style.borderColor = "lime";
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------	
+//-------------------- Controllo Gravità -----------------------------------------
+	var i;
+	var x=0;
+	for(i=1; i<=3;i++){
+		if(document.getElementById("gravita"+i).checked == true){
+			document.getElementById('spunte').style.color = "black";
+			corretto++;
+			x++;
+		}		
+	}
+	if(x==0){
+		document.getElementById("errori2").innerHTML += "|  *Campi Gravità  ";
+		document.getElementById('spunte').style.color = "red";
+	}
+//--------------------------------------------------------------------------------
+	
+	if(corretto==10){
+		if (confirm("Sei sicuro di voler inviare il messaggio?")) {
+			window.open ('Inviato.html','_self',false)
+		} else {
+			alert("Il messaggio non é stato inviato");
+		}
+	}
+}
+</script>
+</head>
+<body style="background-color:#d9ffb3">
+<center>
+<div class="Container">
+	<h1 id="Titolo"> Modulo Per Analisi </h1>
+	<form><br>
+		<p id="TestoS"> Nome: </p>
+		<p id="TestoD"> Cognome: </p>
+			<input  id="nome" class="campoS" type="text" name="nome" placeholder="Nome" minlength="2" >	
+			<input  id="cognome" class="campoD" type="text" name="cognome" placeholder="Cognome" minlength="2" maxlength="25" > <!-- 19 lettere é il cognome più lungo d'italia-->
+		<br><br>
+		<p id="TestoS"> Data Di Nascita: </p>
+		<p id="Pro"> Provincia: </p>
+			<input class="dim1 Campo" id="ddn" type="date" name="data" placeholder="Data Di Nascita" value="2019-01-17" style="text-align:center">
+			<input class="dim2 campoD" id="provincia" type="text" name="Provincia" placeholder="Provincia" maxlength="2">
+		<br><br>
+		<p id="TestoS"> Indirizzo: </p>
+		<p id="TestoD"> Città: </p>
+			<input class="campoS" id="indirizzo" type="text" name="indirizzo" placeholder="Via   Nome   Numero">	
+			<input class="campoD" id="citta" type="text" name="città" placeholder="Città">
+		<br><br>	
+		<p id="TestoS"> Telefono: </p>
+		<p id="TestoD"> Codice Fiscale: </p>
+			<input class="campoS" id="telefono" type="tel" name="Telefono" placeholder="Telefono">	
+			<input class="campoD" id="cf" type="text" name="telefono" placeholder="Codice Fiscale" maxlength="16">
+		<br><br>
+		<p id="TestoS"> E-mail:</p>
+		<p id="CP"> Cap:</p>
+			<input class="dim3 campoS" id="email" type="email" name="mail" placeholder="indirizzo e-mail">	
+			<input class="dim4 Campo" id="cap" type="text" name="cp" placeholder="Codice Paese">
+		<br><br>
+		<p id="Gr"> Gravità: </p>
+		<p id="TestoD"> Esame: </p>
+			<label id="spunte" class="radio-inline Pallino"> <!-- Mettere tutte le checkbox in un'unica riga-->
+				<input type="radio" class="pallino" id="gravita1" name="gravita">Alta
+				<input type="radio" class="pallino" id="gravita2" name="gravita">Media
+				<input type="radio" class="pallino" id="gravita3" name="gravita">Bassa
+			</label>
+				<select class="lista Campo"  id="esami" name="esami">
+					<option value="Radiografia">Radiografia</option>
+					<option value="Ecografia">Ecografia</option>
+					<option value="Emocromo">Emocromo</option>
+					<option value="Risonanza Magnetica">Risonanza Magnetica</option>
+					<option value="Esame Sangue">Esame Sangue</option>
+				</select>
+	</form>
+	<br><br>
+	<button class="bottone" onclick=location.reload()>Reset</button>
+	<button class="bottone" onclick=Controllo()>Invia</button>
+	<p id="errori" style="color:red; font-size:bold;"></p>
+	<p id="errori2" style="color:red; font-size:bold;"></p>
+	
+</div>
+<center>
+</font>
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+.c1{
+	border: 2px solid blue;
+	background-color: inherit;
+	width: 250px;
+	height: 730px;
+	position:relative;
+	float:left;
+	padding:0px;
+	margin:0px;
+}
+table{
+	border:2px solid blue;
+	border-collapse:collapse;
+	padding:0px;
+	position:relative;
+	float:right;
+}
+tr{
+	border-collapse:collapse;
+	padding:0px;
+	height:52px !important;
+}
+td{
+	border-collapse:collapse;
+	padding:0px;	
+	height:52px !important;
+}
+#img{
+	height:52px;
+	width:52px;
+	margin: 0 auto;
+	display:block;
+}
+.testo{
+	color: Blue; 
+	font-size: 30px;
+	font-weight: bold;	
+	font-family:Arial;
+	text-align: center;
+}
+.bottone{
+	text-align: center;
+	font-weight: bold;
+    font-size: 16px;  
+	background-color: white;
+	height:90px;
+	width: 250px;
+	position:relative;
+	margin-top:-8px;
+}
+#spazio{
+	border:1px solid blue;
+}
+#Testo{
+	color: Blue; 
+	font-size: 20px;
+	font-weight: bold;	
+	font-family:Arial;
+	text-align: center;
+}
+#menu{
+	background-color: inherit;
+	color:blue;
+	font-weight: bold;	
+	font-size: 30px;	
+}
+#menu:hover{
+	background-color: lime;
+}
+#immagine:hover{
+	border:3px solid red;
+}

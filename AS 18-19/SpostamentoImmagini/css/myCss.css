@@ -1,0 +1,48 @@
+.testoM{
+	color:blue;
+	font-size:35px;
+	text-align:center;
+	font-family:Arial Black;
+}
+.testoS{
+	color:blue;
+	font-size:20px;
+	text-align:center;
+	font-family:Arial Black;
+}
+.campo{
+	position:relative;
+	float:left;
+}
+.punteggio{
+	position:relative;
+	border:1px solid red;
+	float:right;
+}
+.giocatore{
+	height: 100px;
+	width: 75px;
+	margin:0px;
+	display:block;
+	padding: 0px;
+	position: absolute;
+}
+.pallone{
+	height:125px;
+	width:65px;
+	margin:0px;	
+	padding: 0px;
+	position: relative;
+}
+.nemico{
+	height:100px;
+	width:100px;
+	margin:0px;	
+	padding: 0px;
+	position:relative;
+}
+#linea{
+	border:2px solid blue;
+	margin:0px;
+	position:relative;
+}
