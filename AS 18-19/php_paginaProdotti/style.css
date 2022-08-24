@@ -1,0 +1,60 @@
+h1{
+    font-size: 12;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+hr{
+    border-bottom:2px solid blue;
+}
+p{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin:0px;
+    padding:5px;
+}
+#titolo{
+    font-size: 20px;
+    color:red;
+}
+.errore{
+    color: #FF0000;
+    margin-left:20px;
+    position: absolute;
+    display: inline-block;
+}
+.radio{
+    border-color: blue;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+.full-width {
+    height: 100%;
+    min-height: 1000px !important;
+}
+.imgLogin{
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed; 
+}
+.card{
+    float: left;
+    display: block;
+    width: 100%;
+}
+.loginForm{
+    margin-top:50px;    
+}
+.loginForm .card{
+    background: rgba(0,0,0,.8);
+}
+.footer{
+    margin:0px;
+}
